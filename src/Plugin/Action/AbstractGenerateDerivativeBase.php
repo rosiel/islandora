@@ -9,8 +9,8 @@ use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\islandora\IslandoraUtils;
-use Drupal\islandora\EventGenerator\EmitEvent;
-use Drupal\islandora\EventGenerator\EventGeneratorInterface;
+use Drupal\huacaya\EventGenerator\EmitEvent;
+use Drupal\huacaya\EventGenerator\EventGeneratorInterface;
 use Drupal\islandora\MediaSource\MediaSourceService;
 use Drupal\token\TokenInterface;
 use Stomp\StatefulStomp;
@@ -77,7 +77,7 @@ class AbstractGenerateDerivativeBase extends EmitEvent {
    *   Current user.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity type manager.
-   * @param \Drupal\islandora\EventGenerator\EventGeneratorInterface $event_generator
+   * @param \Drupal\huacaya\EventGenerator\EventGeneratorInterface $event_generator
    *   EventGenerator service to serialize AS2 events.
    * @param \Stomp\StatefulStomp $stomp
    *   Stomp client.
@@ -99,21 +99,21 @@ class AbstractGenerateDerivativeBase extends EmitEvent {
    *   The logger channel.
    */
   public function __construct(
-        array $configuration,
-        $plugin_id,
-        $plugin_definition,
-        AccountInterface $account,
-        EntityTypeManagerInterface $entity_type_manager,
-        EventGeneratorInterface $event_generator,
-        StatefulStomp $stomp,
-        IslandoraUtils $utils,
-        MediaSourceService $media_source,
-        TokenInterface $token,
-        MessengerInterface $messenger,
-        ConfigFactoryInterface $config,
-        EntityFieldManagerInterface $entity_field_manager,
-        EventDispatcherInterface $event_dispatcher,
-        LoggerChannelInterface $channel
+    array                       $configuration,
+                                $plugin_id,
+                                $plugin_definition,
+    AccountInterface            $account,
+    EntityTypeManagerInterface  $entity_type_manager,
+    EventGeneratorInterface     $event_generator,
+    StatefulStomp               $stomp,
+    IslandoraUtils              $utils,
+    MediaSourceService          $media_source,
+    TokenInterface              $token,
+    MessengerInterface          $messenger,
+    ConfigFactoryInterface      $config,
+    EntityFieldManagerInterface $entity_field_manager,
+    EventDispatcherInterface    $event_dispatcher,
+    LoggerChannelInterface      $channel
     ) {
     $this->utils = $utils;
     $this->mediaSource = $media_source;
@@ -145,8 +145,8 @@ class AbstractGenerateDerivativeBase extends EmitEvent {
           $plugin_definition,
           $container->get('current_user'),
           $container->get('entity_type.manager'),
-          $container->get('islandora.eventgenerator'),
-          $container->get('islandora.stomp'),
+          $container->get('huacaya.eventgenerator'),
+          $container->get('huacaya.stomp'),
           $container->get('islandora.utils'),
           $container->get('islandora.media_source_service'),
           $container->get('token'),

@@ -2,6 +2,7 @@
 
 namespace Drupal\islandora;
 
+use Drupal\huacaya\HuacayaUtils;
 use Drupal\context\ContextManager;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
@@ -9,9 +10,8 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryException;
 use Drupal\Core\Entity\Query\QueryInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Language\LanguageManagerInterface; # FIXME remove
 use Drupal\Core\Site\Settings;
-use Drupal\Core\Url;
 use Drupal\file\FileInterface;
 use Drupal\flysystem\FlysystemFactory;
 use Drupal\islandora\ContextProvider\FileContextProvider;
@@ -25,7 +25,7 @@ use Drupal\taxonomy\TermInterface;
 /**
  * Utility functions for figuring out when to fire derivative reactions.
  */
-class IslandoraUtils {
+class IslandoraUtils extends HuacayaUtils {
 
   const EXTERNAL_URI_FIELD = 'field_external_uri';
 
@@ -91,11 +91,11 @@ class IslandoraUtils {
     FlysystemFactory $flysystem_factory,
     LanguageManagerInterface $language_manager
   ) {
+    parent::__construct($language_manager);
     $this->entityTypeManager = $entity_type_manager;
     $this->entityFieldManager = $entity_field_manager;
     $this->contextManager = $context_manager;
     $this->flysystemFactory = $flysystem_factory;
-    $this->languageManager = $language_manager;
   }
 
   /**
@@ -576,43 +576,6 @@ class IslandoraUtils {
     ])->toString();
   }
 
-  /**
-   * Gets the downloadable URL for a file.
-   *
-   * @param \Drupal\file\FileInterface $file
-   *   The file whose URL you want.
-   *
-   * @return string
-   *   The file URL.
-   */
-  public function getDownloadUrl(FileInterface $file) {
-    return $file->createFileUrl(FALSE);
-  }
-
-  /**
-   * Gets the URL for an entity's REST endpoint.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity whose REST endpoint you want.
-   * @param string $format
-   *   REST serialization format.
-   *
-   * @return string
-   *   The REST URL.
-   */
-  public function getRestUrl(EntityInterface $entity, $format = '') {
-    $undefined = $this->languageManager->getLanguage('und');
-    $entity_type = $entity->getEntityTypeId();
-    $rest_url = Url::fromRoute(
-      "rest.entity.$entity_type.GET",
-      [$entity_type => $entity->id()],
-      ['absolute' => TRUE, 'language' => $undefined]
-    )->toString();
-    if (!empty($format)) {
-      $rest_url .= "?_format=$format";
-    }
-    return $rest_url;
-  }
 
   /**
    * Determines if an entity type and bundle make an 'Islandora' type entity.

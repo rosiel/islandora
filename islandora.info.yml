@@ -33,3 +33,4 @@ dependencies:
   - token:token
   - file_replace:file_replace
   - ctools:ctools
+  - huacaya:huacaya

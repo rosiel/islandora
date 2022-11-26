@@ -12,10 +12,10 @@ class EmitNodeEventTest extends IslandoraFunctionalTestBase {
   /**
    * @covers \Drupal\islandora\ContextProvider\NodeContextProvider::__construct
    * @covers \Drupal\islandora\ContextProvider\NodeContextProvider::getRuntimeContexts
-   * @covers \Drupal\islandora\EventGenerator\EmitEvent::buildConfigurationForm
-   * @covers \Drupal\islandora\EventGenerator\EmitEvent::submitConfigurationForm
-   * @covers \Drupal\islandora\EventGenerator\EmitEvent::execute
-   * @covers \Drupal\islandora\EventGenerator\EventGenerator::generateEvent
+   * @covers \Drupal\huacaya\EventGenerator\EmitEvent::buildConfigurationForm
+   * @covers \Drupal\huacaya\EventGenerator\EmitEvent::submitConfigurationForm
+   * @covers \Drupal\huacaya\EventGenerator\EmitEvent::execute
+   * @covers \Drupal\huacaya\EventGenerator\EventGenerator::generateEvent
    * @covers \Drupal\islandora\IslandoraContextManager::evaluateContexts
    * @covers \Drupal\islandora\IslandoraContextManager::applyContexts
    * @covers \Drupal\islandora\Plugin\Condition\ContentEntityType::buildConfigurationForm
@@ -92,7 +92,7 @@ class EmitNodeEventTest extends IslandoraFunctionalTestBase {
    */
   protected function verifyMessageIsSent($queue, $event_type) {
     // Verify message is sent.
-    $stomp = $this->container->get('islandora.stomp');
+    $stomp = $this->container->get('huacaya.stomp');
     try {
       $stomp->subscribe($queue);
       while ($msg = $stomp->read()) {

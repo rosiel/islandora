@@ -2,18 +2,6 @@ islandora.settings:
   type: config_object
   label: 'Islandora Core Settings'
   mapping:
-    broker_url:
-      type: string
-      label: 'Url to connect to message broker'
-    fedora_rest_endpoint:
-      type: string
-      label: 'Url to Fedora instance'
-    broadcast_queue:
-      type: string
-      label: 'Queue that handles distributing messages amongst multiple recipients'
-    jwt_expiry:
-      type: string
-      label: 'How long JWTs should last before expiring.'
     upload_form_location:
       type: string
       label: 'Upload Form Location'
@@ -28,7 +16,6 @@ islandora.settings:
       label: 'List of node, media and taxonomy terms that should include the linked Fedora URI'
       sequence:
         type: string
-
 
 action.configuration.emit_node_event:
   type: mapping

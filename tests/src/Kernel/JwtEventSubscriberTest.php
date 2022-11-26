@@ -9,13 +9,13 @@ use Drupal\jwt\JsonWebToken\JsonWebToken;
 use Drupal\jwt\JsonWebToken\JsonWebTokenInterface;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\core\Entity\EntityStorageInterface;
-use Drupal\islandora\EventSubscriber\JwtEventSubscriber;
+use Drupal\huacaya\EventSubscriber\JwtEventSubscriber;
 
 /**
  * JwtEventSubscriber tests.
  *
  * @group islandora
- * @coversDefaultClass \Drupal\islandora\EventSubscriber\JwtEventSubscriber
+ * @coversDefaultClass \Drupal\huacaya\EventSubscriber\JwtEventSubscriber
  */
 class JwtEventSubscriberTest extends IslandoraKernelTestBase {
 
@@ -38,7 +38,7 @@ class JwtEventSubscriberTest extends IslandoraKernelTestBase {
   }
 
   /**
-   * @covers \Drupal\islandora\EventSubscriber\JwtEventSubscriber::setIslandoraClaims
+   * @covers \Drupal\huacaya\EventSubscriber\JwtEventSubscriber::setIslandoraClaims
    */
   public function testGeneratesValidToken() {
     $entity_storage = $this->container->get('entity_type.manager')->getStorage('user');
@@ -57,7 +57,7 @@ class JwtEventSubscriberTest extends IslandoraKernelTestBase {
   }
 
   /**
-   * @covers \Drupal\islandora\EventSubscriber\JwtEventSubscriber::validate
+   * @covers \Drupal\huacaya\EventSubscriber\JwtEventSubscriber::validate
    */
   public function testInvalidatesMalformedToken() {
     $entity_storage = $this->container->get('entity_type.manager')->getStorage('user');
@@ -74,7 +74,7 @@ class JwtEventSubscriberTest extends IslandoraKernelTestBase {
   }
 
   /**
-   * @covers \Drupal\islandora\EventSubscriber\JwtEventSubscriber::validate
+   * @covers \Drupal\huacaya\EventSubscriber\JwtEventSubscriber::validate
    */
   public function testInvalidatesBadUid() {
     // Mock user entity storage, returns null when loading user.
@@ -96,7 +96,7 @@ class JwtEventSubscriberTest extends IslandoraKernelTestBase {
   }
 
   /**
-   * @covers \Drupal\islandora\EventSubscriber\JwtEventSubscriber::validate
+   * @covers \Drupal\huacaya\EventSubscriber\JwtEventSubscriber::validate
    */
   public function testInvalidatesBadAccount() {
     $anotherUser = $this->createUser();
@@ -121,7 +121,7 @@ class JwtEventSubscriberTest extends IslandoraKernelTestBase {
   }
 
   /**
-   * @covers \Drupal\islandora\EventSubscriber\JwtEventSubscriber::loadUser
+   * @covers \Drupal\huacaya\EventSubscriber\JwtEventSubscriber::loadUser
    */
   public function testLoadsUser() {
     $entity_storage = $this->container->get('entity_type.manager')->getStorage('user');

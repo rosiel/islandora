@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\islandora\Kernel;
 
-use Drupal\islandora\EventGenerator\EventGenerator;
+use Drupal\huacaya\EventGenerator\EventGenerator;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\user\Traits\UserCreationTrait;
@@ -11,7 +11,7 @@ use Drupal\Tests\user\Traits\UserCreationTrait;
  * Tests the EventGenerator default implementation.
  *
  * @group islandora
- * @coversDefaultClass \Drupal\islandora\EventGenerator\EventGenerator
+ * @coversDefaultClass \Drupal\huacaya\EventGenerator\EventGenerator
  */
 class EventGeneratorTest extends IslandoraKernelTestBase {
 
@@ -20,7 +20,7 @@ class EventGeneratorTest extends IslandoraKernelTestBase {
   /**
    * The EventGenerator to test.
    *
-   * @var \Drupal\islandora\EventGenerator\EventGeneratorInterface
+   * @var \Drupal\huacaya\EventGenerator\EventGeneratorInterface
    */
   protected $eventGenerator;
 
@@ -73,7 +73,7 @@ class EventGeneratorTest extends IslandoraKernelTestBase {
   /**
    * Tests the generateCreateEvent() method.
    *
-   * @covers \Drupal\islandora\EventGenerator\EventGenerator::generateEvent
+   * @covers \Drupal\huacaya\EventGenerator\EventGenerator::generateEvent
    */
   public function testGenerateCreateEvent() {
     $json = $this->eventGenerator->generateEvent(
@@ -90,7 +90,7 @@ class EventGeneratorTest extends IslandoraKernelTestBase {
   /**
    * Tests the generateUpdateEvent() method.
    *
-   * @covers \Drupal\islandora\EventGenerator\EventGenerator::generateEvent
+   * @covers \Drupal\huacaya\EventGenerator\EventGenerator::generateEvent
    */
   public function testGenerateUpdateEvent() {
     $json = $this->eventGenerator->generateEvent(
@@ -107,7 +107,7 @@ class EventGeneratorTest extends IslandoraKernelTestBase {
   /**
    * Tests the generateDeleteEvent() method.
    *
-   * @covers \Drupal\islandora\EventGenerator\EventGenerator::generateEvent
+   * @covers \Drupal\huacaya\EventGenerator\EventGenerator::generateEvent
    */
   public function testGenerateDeleteEvent() {
     $json = $this->eventGenerator->generateEvent(

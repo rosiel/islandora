@@ -61,7 +61,7 @@ abstract class GenerateDerivativeTestBase extends IslandoraFunctionalTestBase {
    */
   protected function checkMessage(array $expected) {
     // Verify message is sent.
-    $stomp = $this->container->get('islandora.stomp');
+    $stomp = $this->container->get('huacaya.stomp');
     try {
       $stomp->subscribe('generate-test-derivative');
       while ($msg = $stomp->read()) {

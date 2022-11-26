@@ -5,6 +5,9 @@ namespace Drupal\islandora\Plugin\Action;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\islandora\IslandoraUtils;
+use Drupal\islandora\MediaSource\MediaSourceService;
+
 
 /**
  * Emits a Node event.
@@ -83,7 +86,7 @@ class AbstractGenerateDerivative extends AbstractGenerateDerivativeBase {
     unset($data['derivative_term_uri']);
     unset($data['path']);
     unset($data['scheme']);
-    unset($data['destination_media_type']);
+    //unset($data['destination_media_type']);
 
     return $data;
   }

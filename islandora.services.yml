@@ -1,16 +1,9 @@
 # Islandora Services
 # islandora.services.yml:
 services:
-  islandora.eventgenerator:
-    class: Drupal\islandora\EventGenerator\EventGenerator
-    arguments: ['@islandora.utils', '@islandora.media_source_service']
-  islandora.stomp:
-    class: Stomp\StatefulStomp
-    factory: ['Drupal\islandora\StompFactory', create]
-    arguments: ['@config.factory']
   islandora.jwt-subscriber:
-    class: Drupal\islandora\EventSubscriber\JwtEventSubscriber
-    factory: ['Drupal\islandora\EventSubscriber\JwtEventSubscriber', create]
+    class: Drupal\huacaya\EventSubscriber\JwtEventSubscriber
+    factory: ['Drupal\huacaya\EventSubscriber\JwtEventSubscriber', create]
     arguments: ['@entity_type.manager', '@current_user']
     tags:
       - { name: event_subscriber }
@@ -54,11 +47,6 @@ services:
     arguments: ['@entity_type.manager', '@entity_field.manager', '@context.manager', '@flysystem_factory', '@language_manager']
   islandora.entity_mapper:
     class: Islandora\Crayfish\Commons\EntityMapper\EntityMapper
-  islandora.stomp.auth_header_listener:
-    class: Drupal\islandora\EventSubscriber\StompHeaderEventSubscriber
-    arguments: ['@jwt.authentication.jwt']
-    tags:
-      - { name: event_subscriber }
   islandora.upload_children.batch_processor:
     class: Drupal\islandora\Form\AddChildrenWizard\ChildBatchProcessor
     arguments:

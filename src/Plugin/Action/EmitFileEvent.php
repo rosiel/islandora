@@ -2,7 +2,7 @@
 
 namespace Drupal\islandora\Plugin\Action;
 
-use Drupal\islandora\EventGenerator\EmitEvent;
+use Drupal\huacaya\EventGenerator\EmitEvent;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\File\FileSystemInterface;
