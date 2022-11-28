@@ -56,10 +56,10 @@ class FileUsesFilesystem extends ConditionPluginBase implements ContainerFactory
    *   File system service.
    */
   public function __construct(
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
-    IslandoraUtils $utils,
+    array               $configuration,
+                        $plugin_id,
+                        $plugin_definition,
+    IslandoraUtils      $utils,
     FileSystemInterface $file_system
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);

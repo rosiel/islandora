@@ -55,10 +55,10 @@ class NodeHasTerm extends ConditionPluginBase implements ContainerFactoryPluginI
    *   Entity type manager.
    */
   public function __construct(
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
-    IslandoraUtils $utils,
+    array                      $configuration,
+                               $plugin_id,
+                               $plugin_definition,
+    IslandoraUtils             $utils,
     EntityTypeManagerInterface $entity_type_manager
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);

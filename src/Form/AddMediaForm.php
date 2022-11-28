@@ -107,15 +107,15 @@ class AddMediaForm extends FormBase {
    * Constructs a new IslandoraUploadForm object.
    */
   public function __construct(
-    EntityTypeManagerInterface $entity_type_manager,
-    EntityFieldManagerInterface $entity_field_manager,
-    IslandoraUtils $utils,
-    MediaSourceService $media_source,
-    ImmutableConfig $config,
-    Token $token,
-    AccountInterface $account,
-    RouteMatchInterface $route_match,
-    Connection $database,
+    EntityTypeManagerInterface    $entity_type_manager,
+    EntityFieldManagerInterface   $entity_field_manager,
+    IslandoraUtils                $utils,
+    MediaSourceService            $media_source,
+    ImmutableConfig               $config,
+    Token                         $token,
+    AccountInterface              $account,
+    RouteMatchInterface           $route_match,
+    Connection                    $database,
     EntityTypeBundleInfoInterface $entity_type_bundle_info
   ) {
     $this->entityTypeManager = $entity_type_manager;

@@ -47,12 +47,12 @@ class MediaUsesFilesystem extends FileUsesFilesystem {
    *   Media source service.
    */
   public function __construct(
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
-    IslandoraUtils $utils,
+    array               $configuration,
+                        $plugin_id,
+                        $plugin_definition,
+    IslandoraUtils      $utils,
     FileSystemInterface $file_system,
-    MediaSourceService $media_source
+    MediaSourceService  $media_source
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $utils, $file_system);
     $this->mediaSource = $media_source;

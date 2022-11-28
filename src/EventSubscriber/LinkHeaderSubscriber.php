@@ -101,8 +101,6 @@ abstract class LinkHeaderSubscriber implements EventSubscriberInterface {
   ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->entityFieldManager = $entity_field_manager;
-    $this->accessManager = $access_manager;
-    $this->account = $account;
     $this->routeMatch = $route_match;
     $this->accessManager = $access_manager;
     $this->account = $account;

@@ -36,12 +36,12 @@ class JsonldSelfReferenceReaction extends NormalizerAlterReaction {
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration,
-                              $plugin_id,
-                              $plugin_definition,
+  public function __construct(array                  $configuration,
+                                                     $plugin_id,
+                                                     $plugin_definition,
                               ConfigFactoryInterface $config_factory,
-                              IslandoraUtils $utils,
-                              MediaSourceService $media_source) {
+                              IslandoraUtils         $utils,
+                              MediaSourceService     $media_source) {
 
     parent::__construct(
       $configuration,
