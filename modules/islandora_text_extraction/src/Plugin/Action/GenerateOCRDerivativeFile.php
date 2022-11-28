@@ -5,7 +5,7 @@ namespace Drupal\islandora_text_extraction\Plugin\Action;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\islandora\Plugin\Action\AbstractGenerateDerivativeMediaFile;
+use Drupal\huacaya\Plugin\Action\AbstractGenerateDerivativeMediaFile;
 
 /**
  * Generates OCR derivatives event.

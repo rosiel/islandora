@@ -3,7 +3,7 @@
 namespace Drupal\islandora_image\Plugin\Action;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\islandora\Plugin\Action\AbstractGenerateDerivativeMediaFile;
+use Drupal\huacaya\Plugin\Action\AbstractGenerateDerivativeMediaFile;
 
 /**
  * Emits a Media for generating derivatives event.
