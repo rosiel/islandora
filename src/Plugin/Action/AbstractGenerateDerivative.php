@@ -86,7 +86,7 @@ class AbstractGenerateDerivative extends AbstractGenerateDerivativeBase {
     unset($data['derivative_term_uri']);
     unset($data['path']);
     unset($data['scheme']);
-    //unset($data['destination_media_type']);
+    unset($data['destination_media_type']);
 
     return $data;
   }
