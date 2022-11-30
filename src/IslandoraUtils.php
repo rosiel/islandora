@@ -219,6 +219,102 @@ class IslandoraUtils {
   }
 
   /**
+   * Evaluates if an entity references a taxonomy term with a specific URI.
+   *
+   * See also entityHasTermsWithUris().
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity to evaluate.
+   * @param string $uri
+   *   URI to search for.
+   *
+   * @return bool
+   *   TRUE if the entity references a term with the URI, FALSE otherwise.
+   */
+  public function entityHasTermWithUri(EntityInterface $entity, string $uri) {
+    // Find the terms on the node.
+    $haystack = $this->getTermUrisForEntity($entity);
+    if (in_array($uri, $haystack)) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Evaluates whether an entity references terms with URIs for a list of  URIs.
+   *
+   * See also entityHasTermWithUri().
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity to evaluate.
+   * @param array $uris
+   *   List of URIs to search for.
+   * @param bool $require_all
+   *   Whether to require all URIs be present. If false, will return TRUE if the
+   *   entity references terms that have any of the given URIs.
+   *
+   * @return bool
+   *   TRUE if the entity references the given URIs, FALSE otherwise.
+   */
+  public function entityHasTermsWithUris(EntityInterface $entity, array $uris, bool $require_all = TRUE) {
+    $haystack = $this->getTermUrisForEntity($entity);
+
+    // FALSE if there's no URIs on the node.
+    if (empty($haystack)) {
+      return FALSE;
+    }
+
+    if ($require_all) {
+      // TRUE if all needles are in the haystack.
+      if (count(array_intersect($uris, $haystack)) == count($uris)) {
+        return TRUE;
+      }
+      return FALSE;
+    }
+    else {
+      // TRUE if any needle is in the haystack.
+      if (count(array_intersect($uris, $haystack)) > 0) {
+        return TRUE;
+      }
+      return FALSE;
+    }
+  }
+
+  /**
+   * Gets an array of URIs on the terms referenced by an entity.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity to evaluate.
+   *
+   * @return array
+   *   Array of URI strings.
+   */
+  protected function getTermUrisForEntity(EntityInterface $entity) {
+    $field_names = $this->getUriFieldNamesForTerms();
+    $terms = array_filter($entity->referencedEntities(), function ($entity) use ($field_names) {
+      if ($entity->getEntityTypeId() != 'taxonomy_term') {
+        return FALSE;
+      }
+
+      foreach ($field_names as $field_name) {
+        if ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty()) {
+          return TRUE;
+        }
+      }
+      return FALSE;
+    });
+
+    // Get their URIs.
+    $haystack = array_map(function ($term) {
+      return $this->getUriForTerm($term);
+    },
+      $terms
+    );
+
+    return $haystack;
+  }
+
+  /**
    * Gets the taxonomy term associated with an external uri.
    *
    * @param string $uri

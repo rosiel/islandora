@@ -180,51 +180,12 @@ class NodeHasTerm extends ConditionPluginBase implements ContainerFactoryPluginI
    *   TRUE if entity has all the specified term(s), otherwise FALSE.
    */
   protected function evaluateEntity(EntityInterface $entity) {
-    // Find the terms on the node.
-    $field_names = $this->utils->getUriFieldNamesForTerms();
-    $terms = array_filter($entity->referencedEntities(), function ($entity) use ($field_names) {
-      if ($entity->getEntityTypeId() != 'taxonomy_term') {
-        return FALSE;
-      }
-
-      foreach ($field_names as $field_name) {
-        if ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty()) {
-           return TRUE;
-        }
-      }
-      return FALSE;
-    });
-
-    // Get their URIs.
-    $haystack = array_map(function ($term) {
-        return $this->utils->getUriForTerm($term);
-    },
-      $terms
-    );
-
-    // FALSE if there's no URIs on the node.
-    if (empty($haystack)) {
-      return FALSE;
-    }
-
     // Get the URIs to look for.  It's a required field, so there
     // will always be one.
     $needles = explode(',', $this->configuration['uri']);
+    $require_all = ($this->configuration['logic'] == 'and');
 
-    // TRUE if every needle is in the haystack.
-    if ($this->configuration['logic'] == 'and') {
-      if (count(array_intersect($needles, $haystack)) == count($needles)) {
-        return TRUE;
-      }
-      return FALSE;
-    }
-    // TRUE if any needle is in the haystack.
-    else {
-      if (count(array_intersect($needles, $haystack)) > 0) {
-        return TRUE;
-      }
-      return FALSE;
-    }
+    return $this->utils->entityHasTermsWithUris($entity, $needles, $require_all);
   }
 
   /**
