@@ -182,6 +182,9 @@ condition.plugin.islandora_entity_bundle:
       sequence:
         type: string
 
+condition.plugin.node_is_islandora_object:
+  type: condition.plugin
+
 condition.plugin.media_source_mimetype:
   type: condition.plugin
   mapping:
