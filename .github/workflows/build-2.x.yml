@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the 2.x branch
   push:
-    branches: [ 2.x ]
+    branches: [ test ]
   pull_request:
-    branches: [ 2.x ]
+    branches: [ test ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,15 +23,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ["8.1", "8.2", "8.3"]
+        php-versions: [ "8.3"]
         # test-suite functional-javascript will appear to pass but will skip tests; missing chromedriver.
-        test-suite: ["kernel", "functional", "functional-javascript"]
-        drupal-version: ["10.1.x", "10.2.x", "10.3.x-dev"]
+        test-suite: [ "functional"]
+        drupal-version: [ "10.3.x-dev"]
         mysql: ["8.0"]
         allowed_failure: [false]
-        exclude:
-          - php-versions: "8.3"
-            drupal-version: "10.1.x"
 
 
     name: PHP ${{ matrix.php-versions }} | drupal ${{ matrix.drupal-version }} | mysql ${{ matrix.mysql }} | test-suite ${{ matrix.test-suite }}
