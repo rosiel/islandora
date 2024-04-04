@@ -72,7 +72,6 @@ class JsonldTypeAlterReactionTest extends JsonldSelfReferenceReactionTest {
       // the initial form submission.
       $this->getSession()->getPage()->selectFieldOption('group_field_options_wrapper', 'string');
       $this->submitForm([
-        'new_storage_type' => 'plain_text',
         'label' => 'Typed Predicate',
         'field_name' => 'type_predicate',
         'group_field_options_wrapper' => 'string',
