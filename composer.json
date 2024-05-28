@@ -13,6 +13,9 @@
       "url": "https://packages.drupal.org/8"
     }
   ],
+  "replace": {
+    "islandora/islandora": "self.version"
+  },
   "require": {
     "drupal/context": "^4 || ^5@RC",
     "drupal/ctools": "^3.8 || ^4",
